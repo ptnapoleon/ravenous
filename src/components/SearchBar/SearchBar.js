@@ -1,13 +1,8 @@
 import React from 'react';
 import './SearchBar.css';
 
-let sortByOptions = {
-    'Best Match': 'best_match',
-    'Highest Rated': 'rating',
-    'Most Reviewed': 'review_count'
-};
-
 class SearchBar extends React.Component {
+
     constructor(props) {
         super(props);
         this.state = {
@@ -15,11 +10,20 @@ class SearchBar extends React.Component {
             location: '',
             sortBy: 'best_match'
         };
+        this.sortByOptions = {
+            'Best Match': 'best_match',
+            'Highest Rated': 'rating',
+            'Most Reviewed': 'review_count'
+        };
+    }
+
+    getSortByClass(sortByOption) {
+        return this.state.sortBy === sortByOption ? 'active' : '';
     }
 
     renderSortByOptions() {
-        return Object.keys(sortByOptions).map(sortByOption => {
-            let sortByOptionValue = sortByOptions[sortByOption];
+        return Object.keys(this.sortByOptions).map(sortByOption => {
+            let sortByOptionValue = this.ortByOptions[sortByOption];
             return <li key={sortByOptionValue}> {sortByOption} </li>;
         });
     }
